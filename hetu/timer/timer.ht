@@ -1,0 +1,32 @@
+external class Duration {
+  construct ({
+    days: int,
+    hours: int,
+    minutes: int,
+    seconds: int,
+    milliseconds: int,
+    microseconds: int
+  });
+
+  get inDays -> int
+  get inHours -> int
+  get inMinutes -> int
+  get inSeconds -> int
+  get inMilliseconds -> int
+  get inMicroseconds -> int
+  get isNegative -> int
+}
+
+external class Timer {
+  construct (duration: Duration, callback: Function);
+  construct periodic(duration: Duration, callback: Function);
+
+  fun cancel() -> void
+  get isActive -> bool
+  get tick -> int
+}
+
+export {
+  Duration,
+  Timer
+}

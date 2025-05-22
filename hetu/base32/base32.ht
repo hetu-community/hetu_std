@@ -1,0 +1,36 @@
+enum Encoding {
+  standardRFC4648,
+  base32Hex,
+  crockford,
+  zbase32,
+  geohash,
+  nonStandardRFC4648Lower
+}
+
+external class Base32 {
+  static fun encode(data: List, {
+    encoding: Encoding = Encoding.standardRFC4648
+  }) -> string
+  
+  static fun decode(data: string, {
+    encoding: Encoding = Encoding.standardRFC4648
+  }) -> List
+  
+  static fun encodeString(data: string, {
+    encoding: Encoding = Encoding.standardRFC4648
+  }) -> string
+  
+  static fun decodeAsString(data: string, {
+    encoding: Encoding = Encoding.standardRFC4648
+  }) -> string
+  
+  static fun encodeHexString(data: string, {
+    encoding: Encoding = Encoding.standardRFC4648
+  }) -> string
+  
+  static fun decodeHexString(data: string, {
+    encoding: Encoding = Encoding.standardRFC4648
+  }) -> string
+}
+
+export { Base32, Encoding }

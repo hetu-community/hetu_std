@@ -1,0 +1,95 @@
+enum HttpResponseType {
+  json,
+  text,
+  bytes,
+  plain
+}
+
+external class HttpBaseOptions {
+  final baseUrl: string
+  final connectionTimeout: int
+  final receiveTimeout: int
+  final sendTimeout: int
+  final followRedirects: bool
+  final validateStatus: Function
+
+  construct ({
+    this.baseUrl,
+    this.connectTimeout,
+    this.receiveTimeout,
+    this.sendTimeout,
+    this.followRedirects,
+    this.validateStatus,
+  });
+}
+
+external class RequestOptions {
+  final method: string;
+  final headers: Map;
+  final extra: Map;
+  final responseType: HttpResponseType;
+  final followRedirects: bool;
+  final maxRedirects: int;
+  final validateStatus: Function;
+
+  construct ({
+    this.method,
+    this.headers,
+    this.extra,
+    this.responseType,
+    this.followRedirects,
+    this.maxRedirects,
+    this.validateStatus,
+  });
+}
+
+external class HttpResponse {
+  final statusCode: int;
+  final statusMessage: string ;
+  final data: any;
+  final headers: Map;
+  final isRedirect: bool;
+
+  construct ({
+    this.statusCode,
+    this.statusMessage,
+    this.data,
+    this.headers,
+    this.isRedirect,
+  })
+}
+
+external class HttpClient {
+  construct (options: HttpBaseOptions);
+
+  fun request({
+      path: string, data: any, options: RequestOptions, queryParameters: Map
+  }) -> Future
+
+  fun head(path: string, {
+      url: string, options: RequestOptions, queryParameters: Map
+  }) -> Future
+  fun get_req(path: string, {
+      url: string, options: RequestOptions, queryParameters: Map
+  }) -> Future
+  fun post(path: string, {
+      url: string, data: any, options: RequestOptions, queryParameters: Map
+  }) -> Future
+  fun put(path: string, {
+      url: string, data: any, options: RequestOptions, queryParameters: Map
+  }) -> Future
+  fun patch(path: string, {
+      url: string, data: any, options: RequestOptions, queryParameters: Map
+  }) -> Future
+  fun delete_req(path: string, {
+      url: string, data: any, options: RequestOptions, queryParameters: Map
+  }) -> Future
+}
+
+export {
+  HttpResponseType,
+  HttpBaseOptions,
+  RequestOptions,
+  HttpResponse,
+  HttpClient,
+}

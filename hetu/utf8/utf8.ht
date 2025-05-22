@@ -1,0 +1,10 @@
+external class Utf8Codec {
+    construct (allowMalformed: bool);
+
+    fun encode(str: string) -> List
+    fun decode(bytes: List, {allowMalformed: bool}) -> string
+}
+
+final utf8 = Utf8Codec();
+
+export { Utf8Codec, utf8 }
