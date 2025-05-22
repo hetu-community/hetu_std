@@ -6,45 +6,49 @@ import 'package:hetu_std/base32/base32.dart';
 class Base32ClassBinding extends HTExternalClass {
   Base32ClassBinding() : super('Base32');
 
+  Encoding _parseEncoding(String encoding) {
+    return Encoding.values.firstWhere((value) => value.name == encoding);
+  }
+
   @override
   dynamic memberGet(String varName, {String? from}) {
     switch (varName) {
-      case 'encode':
+      case 'Base32.encode':
         return (HTEntity entity, {positionalArgs, namedArgs, typeArgs}) =>
             Base32.encode(
               positionalArgs[0],
-              encoding: namedArgs['encoding'] ?? Encoding.standardRFC4648,
+              encoding: _parseEncoding(namedArgs['encoding']),
             );
-      case 'decode':
+      case 'Base32.decode':
         return (HTEntity entity, {positionalArgs, namedArgs, typeArgs}) =>
             Base32.decode(
               positionalArgs[0],
-              encoding: namedArgs['encoding'] ?? Encoding.standardRFC4648,
+              encoding: _parseEncoding(namedArgs['encoding']),
             );
-      case 'encodeString':
+      case 'Base32.encodeString':
         return (HTEntity entity, {positionalArgs, namedArgs, typeArgs}) {
           return Base32.encodeString(
-              positionalArgs[0],
-              encoding: namedArgs['encoding'] ?? Encoding.standardRFC4648,
-            );
+            positionalArgs[0],
+            encoding: _parseEncoding(namedArgs['encoding']),
+          );
         };
-      case 'decodeAsString':
+      case 'Base32.decodeAsString':
         return (HTEntity entity, {positionalArgs, namedArgs, typeArgs}) =>
             Base32.decodeAsString(
               positionalArgs[0],
-              encoding: namedArgs['encoding'] ?? Encoding.standardRFC4648,
+              encoding: _parseEncoding(namedArgs['encoding']),
             );
-      case 'encodeHexString':
+      case 'Base32.encodeHexString':
         return (HTEntity entity, {positionalArgs, namedArgs, typeArgs}) =>
             Base32.encodeHexString(
               positionalArgs[0],
-              encoding: namedArgs['encoding'] ?? Encoding.standardRFC4648,
+              encoding: _parseEncoding(namedArgs['encoding']),
             );
-      case 'decodeAsHexString':
+      case 'Base32.decodeAsHexString':
         return (HTEntity entity, {positionalArgs, namedArgs, typeArgs}) =>
             Base32.decodeAsHexString(
               positionalArgs[0],
-              encoding: namedArgs['encoding'] ?? Encoding.standardRFC4648,
+              encoding: _parseEncoding(namedArgs['encoding']),
             );
       default:
         throw HTError.undefined(varName);

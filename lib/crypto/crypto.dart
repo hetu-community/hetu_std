@@ -32,4 +32,8 @@ class Crypto {
   static List<int> hmacMd5(List<int> key, List<int> data) {
     return crypto.Hmac(crypto.md5, key).convert(data).bytes;
   }
+
+  static String hexEncode(List<int> bytes) {
+    return crypto.Digest(bytes).toString();
+  }
 }

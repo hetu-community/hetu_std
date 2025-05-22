@@ -29,7 +29,7 @@ class Utf8CodecBinding extends HTExternalClass {
     switch (varName) {
       case 'Utf8Codec':
         return (HTEntity entity, {positionalArgs, namedArgs, typeArgs}) =>
-            Utf8Codec(allowMalformed: namedArgs['allowMalformed']);
+            Utf8Codec(allowMalformed: namedArgs['allowMalformed'] ?? false);
       default:
         throw HTError.undefined(varName);
     }

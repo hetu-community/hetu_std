@@ -5,6 +5,6 @@ external class Utf8Codec {
     fun decode(bytes: List, {allowMalformed: bool}) -> string
 }
 
-final utf8 = Utf8Codec();
+final utf8 = Utf8Codec()
 
 export { Utf8Codec, utf8 }

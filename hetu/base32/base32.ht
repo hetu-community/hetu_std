@@ -1,10 +1,11 @@
-enum Encoding {
-  standardRFC4648,
-  base32Hex,
-  crockford,
-  zbase32,
-  geohash,
-  nonStandardRFC4648Lower
+var Encoding = {
+  standardRFC4648: "standardRFC4648",
+  base32Hex: "base32Hex",
+  crockford: "crockford",
+  zbase32: "zbase32",
+  geohash: "geohash",
+  nonStandardRFC4648Lowe: "nonStandardRFC4648Lowe",
+
 }
 
 external class Base32 {
