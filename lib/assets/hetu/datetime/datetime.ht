@@ -1,0 +1,68 @@
+import { Duration } from '../timer/timer.ht';
+
+external class DateTime {  
+  construct (
+    year: int, [
+    month: int = 1,
+    day: int = 1,
+    hour: int = 0,
+    minute: int = 0,
+    second: int = 0,
+    millisecond: int = 0,
+    microsecond: int = 0,
+  ]);
+
+  construct utc(
+    year: int, [
+    month: int = 1,
+    day: int = 1,
+    hour: int = 0,
+    minute: int = 0,
+    second: int = 0,
+    millisecond: int = 0,
+    microsecond: int = 0,
+  ]);
+
+  construct now();
+
+  construct parse(formattedString: string);
+
+  construct fromMillisecondsSinceEpoch(
+    millisecondsSinceEpoch: int, {
+    isUtc: bool = false,
+  });
+  
+  construct fromMicrosecondsSinceEpoch(
+    microsecondsSinceEpoch: int, {
+    isUtc: bool = false,
+  });
+
+  get year -> int
+  get month -> int
+  get weekday -> int
+  get day -> int
+  get hour -> int
+  get minute -> int
+  get second -> int
+  get microsecond -> int
+  get microsecondsSinceEpoch -> int
+  get millisecond -> int
+  get millisecondsSinceEpoch -> int
+  get isUtc -> bool
+  get timeZoneName -> int
+  get timeZoneOffset -> Duration
+
+  fun add(duration: Duration) -> DateTime
+  fun subtract(duration: Duration) -> DateTime
+  fun compareTo(duration: DateTime) -> int
+  fun difference(duration: Duration) -> DateTime
+  fun isAfter(duration: DateTime) -> bool
+  fun isBefore(duration: DateTime) -> bool
+  fun isAtSameMomentAs(duration: DateTime) -> bool
+  fun toLocal() -> DateTime
+  fun toUtc() -> DateTime
+  fun toIso8601String() -> string
+  fun toString() -> string
+}
+
+export { DateTime }

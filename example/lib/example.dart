@@ -10,10 +10,17 @@ void runHetu() async {
   hetu.eval(r"""
     import 'module:std' as std
 
-    var { Base32, utf8, Crypto, Timer, Duration, HttpClient, HttpResponse, RequestOptions, Bitwise } = std
+    var { Base32, utf8, Crypto, Timer, Duration, HttpClient, HttpResponse, RequestOptions, Bitwise, DateTime } = std
 
     var or = Bitwise.or(1, 2)
     print("Bitwise OR: ${or}")
+
+    var currentTime = DateTime.now()
+    print("Current Time: ${currentTime}")
+    var yesterday = currentTime.subtract(Duration(days: 1))
+    print("Yesterday: ${yesterday}")
+    var tomorrow = currentTime.add(Duration(days: 1))
+    print("Tomorrow: ${tomorrow}")
 
     var count = 0
 
@@ -44,11 +51,12 @@ void runHetu() async {
       "https://www.google.com",
       options: RequestOptions(
         validateStatus: (status) {
-          return status > 200
+          print("Status: ${status}")
+          return status == 200
         },
       )
     ).then((response) {
-      print("Response: ${response.data}")
+      print("Response length: ${response.data.length}")
     })
   """);
 }

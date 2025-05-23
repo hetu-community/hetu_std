@@ -4,6 +4,7 @@ import 'package:hetu_script/hetu_script.dart';
 import 'package:hetu_std/base32/base32.binding.dart';
 import 'package:hetu_std/bitwise/bitwise.binding.dart';
 import 'package:hetu_std/crypto/crypto.binding.dart';
+import 'package:hetu_std/datetime/datetime.binding.dart';
 import 'package:hetu_std/http/http.binding.dart';
 import 'package:hetu_std/timer/duration.binding.dart';
 import 'package:hetu_std/timer/timer.binding.dart';
@@ -20,6 +21,7 @@ abstract class HetuStdLoader {
       HttpClientClassBinding(),
       DurationClassBinding(),
       TimerClassBinding(),
+      DateTimeClassBinding(),
       Utf8CodecBinding(),
       Base32ClassBinding(),
       CryptoClassBinding(),
