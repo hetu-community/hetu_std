@@ -1,16 +1,11 @@
-import 'dart:io';
-
 import 'package:hetu_script/hetu_script.dart';
 import 'package:hetu_std/hetu_std.dart';
 
-void main(List<String> arguments) async {
+void runHetu() async {
   final hetu = Hetu();
   hetu.init();
-  loadHetuStd(hetu);
-
-  final content = await File("./assets/bytecode/std.out").readAsBytes();
-
-  hetu.loadBytecode(bytes: content, moduleName: 'std');
+  HetuStdLoader.loadBindings(hetu);
+  await HetuStdLoader.loadBytecodePureDart(hetu, "..");
 
   hetu.eval(r"""
     import 'module:std' as std

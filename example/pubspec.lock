@@ -34,7 +34,7 @@ packages:
     source: hosted
     version: "2.13.0"
   base32:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: base32
       sha256: ddad4ebfedf93d4500818ed8e61443b734ffe7cf8a45c668c9b34ef6adde02e2
@@ -98,7 +98,7 @@ packages:
     source: hosted
     version: "1.13.1"
   crypto:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: crypto
       sha256: "1e445881f28f22d6140f181e07737b22f1e099a5e1ff94b0af2f9e4a463f4855"
@@ -106,7 +106,7 @@ packages:
     source: hosted
     version: "3.0.6"
   dio:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: dio
       sha256: "253a18bbd4851fecba42f7343a1df3a9a4c1d31a2c1b37e221086b4fa8c8dbc9"
@@ -169,6 +169,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.2+1"
+  hetu_std:
+    dependency: "direct main"
+    description:
+      path: ".."
+      relative: true
+    source: path
+    version: "1.0.0"
   http_multi_server:
     dependency: transitive
     description:
@@ -266,7 +273,7 @@ packages:
     source: hosted
     version: "2.2.0"
   path:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: path
       sha256: "75cca69d1490965be98c73ceaea117e8a04dd21217b37b292c9ddbec0d955bc5"

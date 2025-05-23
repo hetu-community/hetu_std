@@ -1,2 +1,2 @@
 compile:
-	hetu compile assets/hetu/std.ht assets/bytecode/std.out
+	hetu compile lib/assets/hetu/std.ht lib/assets/bytecode/std.out
