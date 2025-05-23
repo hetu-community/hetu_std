@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:hetu_script/hetu_script.dart';
 import 'package:hetu_std/base32/base32.binding.dart';
+import 'package:hetu_std/bitwise/bitwise.binding.dart';
 import 'package:hetu_std/crypto/crypto.binding.dart';
 import 'package:hetu_std/http/http.binding.dart';
 import 'package:hetu_std/timer/duration.binding.dart';
@@ -12,6 +13,7 @@ import 'package:path/path.dart';
 abstract class HetuStdLoader {
   static void loadBindings(Hetu hetu) {
     final classes = [
+      BitwiseClassBinding(),
       HttpBaseOptionsClassBinding(),
       RequestOptionsClassBinding(),
       HttpResponseClassBinding(),

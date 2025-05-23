@@ -1,4 +1,5 @@
 export './base32/base32.ht'
+export './bitwise/bitwise.ht'
 export './crypto/crypto.ht'
 export './http/http.ht'
 export './timer/timer.ht'

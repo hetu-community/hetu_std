@@ -1,0 +1,17 @@
+external class Bitwise {
+  static fun and(...ints: List) -> int
+
+  static fun or(...ints: List) -> int
+
+  static fun not(a: int) -> int
+
+  static fun xor(...ints: List) -> int
+
+  static fun shiftLeft(...ints: List) -> int
+
+  static fun shiftRight(...ints: List) -> int
+
+  static fun unsignedRightShift(...ints: List) -> int
+}
+
+export { Bitwise }

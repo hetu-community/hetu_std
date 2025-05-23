@@ -10,7 +10,10 @@ void runHetu() async {
   hetu.eval(r"""
     import 'module:std' as std
 
-    var { Base32, utf8, Crypto, Timer, Duration, HttpClient, HttpResponse, RequestOptions } = std
+    var { Base32, utf8, Crypto, Timer, Duration, HttpClient, HttpResponse, RequestOptions, Bitwise } = std
+
+    var or = Bitwise.or(1, 2)
+    print("Bitwise OR: ${or}")
 
     var count = 0
 
