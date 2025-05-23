@@ -7,9 +7,9 @@ external class Bitwise {
 
   static fun xor(...ints: List) -> int
 
-  static fun shiftLeft(...ints: List) -> int
+  static fun leftShift(...ints: List) -> int
 
-  static fun shiftRight(...ints: List) -> int
+  static fun rightShift(...ints: List) -> int
 
   static fun unsignedRightShift(...ints: List) -> int
 }
