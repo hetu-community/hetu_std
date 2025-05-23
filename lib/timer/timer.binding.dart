@@ -36,7 +36,9 @@ class TimerClassBinding extends HTExternalClass {
         return (HTEntity entity, {positionalArgs, namedArgs, typeArgs}) =>
             Timer.periodic(
               positionalArgs[0],
-              (timer) => (positionalArgs[1] as HTFunction).call(),
+              (timer) => (positionalArgs[1] as HTFunction).call(
+                positionalArgs: [timer.cancel],
+              ),
             );
       default:
         throw HTError.undefined(varName);

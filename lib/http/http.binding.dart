@@ -1,5 +1,6 @@
 import 'package:hetu_script/external/external_class.dart';
 import 'package:hetu_script/hetu_script.dart';
+import 'package:hetu_script/values.dart';
 import 'package:hetu_std/http/http.dart';
 
 extension HttpBaseOptionsBinding on HttpBaseOptions {
@@ -30,15 +31,21 @@ class HttpBaseOptionsClassBinding extends HTExternalClass {
   dynamic memberGet(String varName, {String? from}) {
     switch (varName) {
       case 'HttpBaseOptions':
-        return (HTEntity entity, {positionalArgs, namedArgs, typeArgs}) =>
-            HttpBaseOptions(
-              baseUrl: namedArgs['baseUrl'],
-              connectTimeout: namedArgs['connectTimeout'],
-              receiveTimeout: namedArgs['receiveTimeout'],
-              sendTimeout: namedArgs['sendTimeout'],
-              followRedirects: namedArgs['followRedirects'],
-              validateStatus: namedArgs['validateStatus'],
-            );
+        return (HTEntity entity, {positionalArgs, namedArgs, typeArgs}) {
+          HTFunction? validateStatus = namedArgs['validateStatus'];
+          return HttpBaseOptions(
+            baseUrl: namedArgs['baseUrl'],
+            connectTimeout: namedArgs['connectTimeout'],
+            receiveTimeout: namedArgs['receiveTimeout'],
+            sendTimeout: namedArgs['sendTimeout'],
+            followRedirects: namedArgs['followRedirects'],
+            validateStatus:
+                validateStatus == null
+                    ? null
+                    : (status) =>
+                        validateStatus.call(positionalArgs: [status]) as bool,
+          );
+        };
       default:
         throw HTError.undefined(varName);
     }
@@ -81,16 +88,22 @@ class RequestOptionsClassBinding extends HTExternalClass {
   dynamic memberGet(String varName, {String? from}) {
     switch (varName) {
       case 'RequestOptions':
-        return (HTEntity entity, {positionalArgs, namedArgs, typeArgs}) =>
-            RequestOptions(
-              method: namedArgs['method'],
-              headers: namedArgs['headers'],
-              extra: namedArgs['extra'],
-              responseType: namedArgs['responseType'],
-              followRedirects: namedArgs['followRedirects'],
-              maxRedirects: namedArgs['maxRedirects'],
-              validateStatus: namedArgs['validateStatus'],
-            );
+        return (HTEntity entity, {positionalArgs, namedArgs, typeArgs}) {
+          HTFunction? validateStatus = namedArgs['validateStatus'];
+          return RequestOptions(
+            method: namedArgs['method'],
+            headers: namedArgs['headers'],
+            extra: namedArgs['extra'],
+            responseType: namedArgs['responseType'],
+            followRedirects: namedArgs['followRedirects'],
+            maxRedirects: namedArgs['maxRedirects'],
+            validateStatus:
+                validateStatus == null
+                    ? null
+                    : (status) =>
+                        validateStatus.call(positionalArgs: [status]) as bool,
+          );
+        };
       default:
         throw HTError.undefined(varName);
     }

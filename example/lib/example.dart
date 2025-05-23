@@ -10,7 +10,17 @@ void runHetu() async {
   hetu.eval(r"""
     import 'module:std' as std
 
-    var { Base32, utf8, Crypto } = std
+    var { Base32, utf8, Crypto, Timer, Duration, HttpClient, HttpResponse, RequestOptions } = std
+
+    var count = 0
+
+    var timer = Timer.periodic(Duration(seconds: 1), (cancel) {
+      print("Hello, World! ${count}")
+      count += 1
+      if (count == 5) {
+        cancel()
+      }
+    })
 
     var b32Encode = Base32.encodeString("Hello, World!")
     print("Base32 Encode: ${b32Encode}")
@@ -24,5 +34,18 @@ void runHetu() async {
 
     var sha256 = Crypto.hexEncode(Crypto.sha256(utf8Encode))
     print("SHA256: ${sha256}")
+
+    var httpClient = HttpClient()
+
+    httpClient.get_req(
+      "https://www.google.com",
+      options: RequestOptions(
+        validateStatus: (status) {
+          return status > 200
+        },
+      )
+    ).then((response) {
+      print("Response: ${response.data}")
+    })
   """);
 }
