@@ -18,6 +18,10 @@ extension HttpBaseOptionsBinding on HttpBaseOptions {
         return followRedirects;
       case 'validateStatus':
         return validateStatus;
+      case 'headers':
+        return headers;
+      case 'queryParameters':
+        return queryParameters;
       default:
         throw HTError.undefined(id);
     }
@@ -44,6 +48,9 @@ class HttpBaseOptionsClassBinding extends HTExternalClass {
                     ? null
                     : (status) =>
                         validateStatus.call(positionalArgs: [status]) as bool,
+            headers: (namedArgs['headers'] as Map?)?.cast<String, dynamic>(),
+            queryParameters:
+                (namedArgs['queryParameters'] as Map?)?.cast<String, dynamic>(),
           );
         };
       default:

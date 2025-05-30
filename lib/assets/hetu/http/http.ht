@@ -12,6 +12,8 @@ external class HttpBaseOptions {
   final sendTimeout: int
   final followRedirects: bool
   final validateStatus: Function
+  final headers: Map
+  final queryParameters: Map
 
   construct ({
     this.baseUrl,
@@ -20,6 +22,8 @@ external class HttpBaseOptions {
     this.sendTimeout,
     this.followRedirects,
     this.validateStatus,
+    this.headers,
+    this.queryParameters,
   });
 }
 

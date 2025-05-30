@@ -9,6 +9,8 @@ class HttpBaseOptions {
   final int? sendTimeout;
   final bool? followRedirects;
   final ValidateStatus? validateStatus;
+  final Map<String, dynamic>? headers;
+  final Map<String, dynamic>? queryParameters;
 
   const HttpBaseOptions({
     this.baseUrl,
@@ -17,6 +19,8 @@ class HttpBaseOptions {
     this.sendTimeout,
     this.followRedirects,
     this.validateStatus,
+    this.headers,
+    this.queryParameters,
   });
 }
 
@@ -126,6 +130,8 @@ class HttpClient {
                     : null,
             followRedirects: options.followRedirects,
             validateStatus: options.validateStatus,
+            headers: options.headers,
+            queryParameters: options.queryParameters,
           )
           : null,
     );
