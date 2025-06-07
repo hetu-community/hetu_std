@@ -15,6 +15,8 @@ import 'package:hetu_std/timer/timer.binding.dart';
 import 'package:hetu_std/utf8/utf8.binding.dart';
 import 'package:path/path.dart';
 
+export 'package:hetu_std/stream/stream.dart';
+
 abstract class HetuStdLoader {
   static void loadBindings(Hetu hetu) {
     final classes = [
