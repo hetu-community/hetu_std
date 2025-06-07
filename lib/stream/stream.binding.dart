@@ -1,6 +1,7 @@
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
 import 'package:hetu_script/values.dart';
+import 'package:hetu_std/stream/stream.dart';
 
 extension StreamBinding on Stream {
   dynamic hFetch(String varName) {
@@ -11,36 +12,41 @@ extension StreamBinding on Stream {
       "first" => first,
       "last" => last,
       "single" => single,
-      "asBroadcastStream" => (
-        HTEntity entity, {
-        positionalArgs,
-        namedArgs,
-        typedArgs,
-      }) {
-        HTFunction? onListen = namedArgs['onListen'];
-        HTFunction? onCancel = namedArgs['onCancel'];
+      // "asBroadcastStream" => (
+      //   HTEntity entity, {
+      //   positionalArgs,
+      //   namedArgs,
+      //   typedArgs,
+      // }) {
+      //   HTFunction? onListen = namedArgs['onListen'];
+      //   HTFunction? onCancel = namedArgs['onCancel'];
 
-        return asBroadcastStream(
-          onListen:
-              onListen != null
-                  ? (subscription) =>
-                      onListen.call(positionalArgs: [subscription])
-                  : null,
-          onCancel:
-              onCancel != null
-                  ? (subscription) =>
-                      onCancel.call(positionalArgs: [subscription])
-                  : null,
-        );
-      },
-      "listen" => (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) {
-        HTFunction? onData = positionalArgs[0];
+      //   return asBroadcastStream(
+      //     onListen:
+      //         onListen != null
+      //             ? (subscription) =>
+      //                 onListen.call(positionalArgs: [subscription])
+      //             : null,
+      //     onCancel:
+      //         onCancel != null
+      //             ? (subscription) =>
+      //                 onCancel.call(positionalArgs: [subscription])
+      //             : null,
+      //   );
+      // },
+      "listen" => (
+        HTEntity entity, {
+        List<dynamic> positionalArgs = const [],
+        Map<String, dynamic> namedArgs = const {},
+        List<HTType> typeArgs = const [],
+      }) {
+        HTFunction onData = positionalArgs[0];
         HTFunction? onError = namedArgs['onError'];
         HTFunction? onDone = namedArgs['onDone'];
         bool? cancelOnError = namedArgs['cancelOnError'];
 
         return listen(
-          onData != null ? (data) => onData.call(positionalArgs: [data]) : null,
+          (data) => onData.call(positionalArgs: [data]),
           onError:
               onError != null
                   ? (error, stackTrace) =>
@@ -50,29 +56,59 @@ extension StreamBinding on Stream {
           cancelOnError: cancelOnError ?? false,
         );
       },
-      "drain" => (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) {
+      "drain" => (
+        HTEntity entity, {
+        List<dynamic> positionalArgs = const [],
+        Map<String, dynamic> namedArgs = const {},
+        List<HTType> typeArgs = const [],
+      }) {
         dynamic futureValue = namedArgs['futureValue'];
         return drain(futureValue);
       },
-      "where" => (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) {
+      "where" => (
+        HTEntity entity, {
+        List<dynamic> positionalArgs = const [],
+        Map<String, dynamic> namedArgs = const {},
+        List<HTType> typeArgs = const [],
+      }) {
         HTFunction test = positionalArgs[0];
         return where((element) => test.call(positionalArgs: [element]));
       },
-      "map" => (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) {
+      "map" => (
+        HTEntity entity, {
+        List<dynamic> positionalArgs = const [],
+        Map<String, dynamic> namedArgs = const {},
+        List<HTType> typeArgs = const [],
+      }) {
         HTFunction convert = positionalArgs[0];
         return map((element) => convert.call(positionalArgs: [element]));
       },
-      "expand" => (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) {
+      "expand" => (
+        HTEntity entity, {
+        List<dynamic> positionalArgs = const [],
+        Map<String, dynamic> namedArgs = const {},
+        List<HTType> typeArgs = const [],
+      }) {
         HTFunction convert = positionalArgs[0];
         return expand((element) => convert.call(positionalArgs: [element]));
       },
-      "reduce" => (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) {
+      "reduce" => (
+        HTEntity entity, {
+        List<dynamic> positionalArgs = const [],
+        Map<String, dynamic> namedArgs = const {},
+        List<HTType> typeArgs = const [],
+      }) {
         HTFunction combine = positionalArgs[0];
         return reduce(
           (value, element) => combine.call(positionalArgs: [value, element]),
         );
       },
-      "fold" => (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) {
+      "fold" => (
+        HTEntity entity, {
+        List<dynamic> positionalArgs = const [],
+        Map<String, dynamic> namedArgs = const {},
+        List<HTType> typeArgs = const [],
+      }) {
         dynamic initialValue = positionalArgs[0];
         HTFunction combine = positionalArgs[1];
         return fold(
@@ -81,33 +117,73 @@ extension StreamBinding on Stream {
               combine.call(positionalArgs: [previousValue, element]),
         );
       },
-      "join" => (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) {
+      "join" => (
+        HTEntity entity, {
+        List<dynamic> positionalArgs = const [],
+        Map<String, dynamic> namedArgs = const {},
+        List<HTType> typeArgs = const [],
+      }) {
         String separator = positionalArgs[0];
         return join(separator);
       },
       "toList" =>
-        (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) => toList(),
+        (
+          HTEntity entity, {
+          List<dynamic> positionalArgs = const [],
+          Map<String, dynamic> namedArgs = const {},
+          List<HTType> typeArgs = const [],
+        }) => toList(),
       "toSet" =>
-        (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) => toSet(),
-      "take" => (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) {
-        int count = positionalArgs[0];
-        return take(count);
-      },
-      "takeWhile" => (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) {
-        HTFunction test = positionalArgs[0];
-        return takeWhile((element) => test.call(positionalArgs: [element]));
-      },
-      "skip" => (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) {
-        int count = positionalArgs[0];
-        return skip(count);
-      },
-      "skipWhile" => (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) {
-        HTFunction test = positionalArgs[0];
-        return skipWhile((element) => test.call(positionalArgs: [element]));
-      },
-      "distinct" => (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) {
-        return distinct();
-      },
+        (
+          HTEntity entity, {
+          List<dynamic> positionalArgs = const [],
+          Map<String, dynamic> namedArgs = const {},
+          List<HTType> typeArgs = const [],
+        }) => toSet(),
+      // "take" => (
+      //   HTEntity entity, {
+      //   List<dynamic> positionalArgs = const [],
+      //   Map<String, dynamic> namedArgs = const {},
+      //   List<HTType> typeArgs = const [],
+      // }) {
+      //   int count = positionalArgs[0];
+      //   return take(count);
+      // },
+      // "takeWhile" => (
+      //   HTEntity entity, {
+      //   List<dynamic> positionalArgs = const [],
+      //   Map<String, dynamic> namedArgs = const {},
+      //   List<HTType> typeArgs = const [],
+      // }) {
+      //   HTFunction test = positionalArgs[0];
+      //   return takeWhile((element) => test.call(positionalArgs: [element]));
+      // },
+      // "skip" => (
+      //   HTEntity entity, {
+      //   List<dynamic> positionalArgs = const [],
+      //   Map<String, dynamic> namedArgs = const {},
+      //   List<HTType> typeArgs = const [],
+      // }) {
+      //   int count = positionalArgs[0];
+      //   return skip(count);
+      // },
+      // "skipWhile" => (
+      //   HTEntity entity, {
+      //   List<dynamic> positionalArgs = const [],
+      //   Map<String, dynamic> namedArgs = const {},
+      //   List<HTType> typeArgs = const [],
+      // }) {
+      //   HTFunction test = positionalArgs[0];
+      //   return skipWhile((element) => test.call(positionalArgs: [element]));
+      // },
+      // "distinct" => (
+      //   HTEntity entity, {
+      //   List<dynamic> positionalArgs = const [],
+      //   Map<String, dynamic> namedArgs = const {},
+      //   List<HTType> typeArgs = const [],
+      // }) {
+      //   return distinct();
+      // },
       _ => throw HTError.undefined(varName),
     };
   }
@@ -120,11 +196,19 @@ class StreamClassBinding extends HTExternalClass {
   dynamic memberGet(String varName, {String? from}) {
     return switch (varName) {
       "Stream.empty" =>
-        (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) =>
-            Stream.empty(),
+        (
+          HTEntity entity, {
+          List<dynamic> positionalArgs = const [],
+          Map<String, dynamic> namedArgs = const {},
+          List<HTType> typeArgs = const [],
+        }) => Stream.empty(),
       "Stream.fromIterable" =>
-        (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) =>
-            Stream.fromIterable(positionalArgs[0]),
+        (
+          HTEntity entity, {
+          List<dynamic> positionalArgs = const [],
+          Map<String, dynamic> namedArgs = const {},
+          List<HTType> typeArgs = const [],
+        }) => Stream.fromIterable(positionalArgs[0]),
       _ => throw HTError.undefined(varName),
     };
   }

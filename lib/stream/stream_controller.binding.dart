@@ -1,25 +1,34 @@
-import 'dart:async';
-
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
 import 'package:hetu_script/values.dart';
+import 'package:hetu_std/stream/stream_controller.dart';
+import 'package:hetu_std/stream/stream.dart';
 
 extension StreamControllerBinding on StreamController {
-  dynamic hFetch(String varName) {
+  dynamic htFetch(String varName) {
     return switch (varName) {
       "done" => done,
       "isClosed" => isClosed,
       "isPaused" => isPaused,
       "hasListener" => hasListener,
-      "stream" => stream,
+      "stream" => Stream(stream),
       "add" =>
-        (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) =>
-            add(positionalArgs[0]),
+        (
+          HTEntity entity, {
+          List<dynamic> positionalArgs = const [],
+          Map<String, dynamic> namedArgs = const {},
+          List<HTType> typeArgs = const [],
+        }) => add(positionalArgs[0]),
       "addError" =>
         (HTEntity entity, {List? positionalArgs, namedArgs, typedArgs}) =>
             addError(positionalArgs?[0], positionalArgs?.elementAtOrNull(0)),
       "close" =>
-        (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) => close(),
+        (
+          HTEntity entity, {
+          List<dynamic> positionalArgs = const [],
+          Map<String, dynamic> namedArgs = const {},
+          List<HTType> typeArgs = const [],
+        }) => close(),
       _ => throw HTError.undefined(varName),
     };
   }
@@ -32,7 +41,12 @@ class StreamControllerClassBinding extends HTExternalClass {
   memberGet(String varName, {String? from}) {
     switch (varName) {
       case "StreamController":
-        return (HTEntity entity, {positionalArgs, namedArgs, typeArgs}) {
+        return (
+          HTEntity entity, {
+          List<dynamic> positionalArgs = const [],
+          Map<String, dynamic> namedArgs = const {},
+          List<HTType> typeArgs = const [],
+        }) {
           HTFunction? onListen = namedArgs['onListen'];
           HTFunction? onPause = namedArgs['onPause'];
           HTFunction? onResume = namedArgs['onResume'];
@@ -47,7 +61,12 @@ class StreamControllerClassBinding extends HTExternalClass {
           );
         };
       case "StreamController.broadcast":
-        return (HTEntity entity, {positionalArgs, namedArgs, typedArgs}) {
+        return (
+          HTEntity entity, {
+          List<dynamic> positionalArgs = const [],
+          Map<String, dynamic> namedArgs = const {},
+          List<HTType> typeArgs = const [],
+        }) {
           HTFunction? onListen = namedArgs['onListen'];
           HTFunction? onCancel = namedArgs['onCancel'];
 
@@ -63,7 +82,8 @@ class StreamControllerClassBinding extends HTExternalClass {
   }
 
   @override
-  instanceMemberGet(object, String varName) {
-    return (object as StreamController).hFetch(varName);
+  dynamic instanceMemberGet(dynamic object, String varName) {
+    var i = object as StreamController;
+    return i.htFetch(varName);
   }
 }

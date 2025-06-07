@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hetu_script/hetu_script.dart';
 import 'package:hetu_std/hetu_std.dart';
@@ -18,9 +17,10 @@ void main() async {
       HttpResponse, RequestOptions, Bitwise, DateTime,
       StreamController, Stream, StreamSubscription } = std
 
-    var controller = StreamController.broadcast()
-    print("Controller: ${controller.hasListener}")
+    var controller = StreamController()
+    print("Controller: ${controller}")
     var stream = controller.stream
+    print("Stream: ${stream}")
     var subscription = stream.listen((data) {
       print("Received: ${data}")
     })

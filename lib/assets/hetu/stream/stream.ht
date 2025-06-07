@@ -46,7 +46,7 @@ external class StreamController {
     sync: bool,
     onListen: Function,
     onCancel: Function,
-  })
+  });
 
   get done -> Future
   get isClosed -> bool
