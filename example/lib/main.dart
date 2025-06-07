@@ -15,8 +15,14 @@ void main() async {
 
     var { Base32, utf8, Crypto, Timer, Duration, HttpClient, 
       HttpResponse, RequestOptions, Bitwise, DateTime,
-      StreamController, Stream, StreamSubscription } = std
+      StreamController, Stream, StreamSubscription, JSON } = std
 
+    var strJson = '{"hello": "world", "foo": "bar"}'
+    var jsonData = JSON.decode(strJson)
+    print("JSON Data: ${jsonData}")
+    var jsonString = JSON.encode(jsonData)
+    print("JSON String: ${jsonString}")
+    
     var controller = StreamController()
     print("Controller: ${controller}")
     var stream = controller.stream

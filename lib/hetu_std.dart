@@ -7,6 +7,7 @@ import 'package:hetu_std/bitwise/bitwise.binding.dart';
 import 'package:hetu_std/crypto/crypto.binding.dart';
 import 'package:hetu_std/datetime/datetime.binding.dart';
 import 'package:hetu_std/http/http.binding.dart';
+import 'package:hetu_std/json/json.binding.dart';
 import 'package:hetu_std/stream/stream.binding.dart';
 import 'package:hetu_std/stream/stream_controller.binding.dart';
 import 'package:hetu_std/stream/stream_subscription.binding.dart';
@@ -34,6 +35,7 @@ abstract class HetuStdLoader {
       Utf8CodecBinding(),
       Base32ClassBinding(),
       CryptoClassBinding(),
+      JSONClassBinding(),
     ];
 
     for (final classBinding in classes) {
@@ -53,7 +55,7 @@ abstract class HetuStdLoader {
 
   /// Loads the bytecode for the standard library from the Flutter asset bundle.
   /// Add following to your `pubspec.yaml`:
-  /// 
+  ///
   /// ```yaml
   /// flutter:
   ///   assets:

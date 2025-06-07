@@ -1,0 +1,7 @@
+external class JSON {
+  static fun encode(value) -> string
+
+  static fun decode(json: string)
+}
+
+export { JSON }
