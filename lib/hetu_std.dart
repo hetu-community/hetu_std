@@ -1,11 +1,15 @@
 import 'dart:io';
 
+import 'package:flutter/services.dart';
 import 'package:hetu_script/hetu_script.dart';
 import 'package:hetu_std/base32/base32.binding.dart';
 import 'package:hetu_std/bitwise/bitwise.binding.dart';
 import 'package:hetu_std/crypto/crypto.binding.dart';
 import 'package:hetu_std/datetime/datetime.binding.dart';
 import 'package:hetu_std/http/http.binding.dart';
+import 'package:hetu_std/stream/stream.binding.dart';
+import 'package:hetu_std/stream/stream_controller.binding.dart';
+import 'package:hetu_std/stream/stream_subscription.binding.dart';
 import 'package:hetu_std/timer/duration.binding.dart';
 import 'package:hetu_std/timer/timer.binding.dart';
 import 'package:hetu_std/utf8/utf8.binding.dart';
@@ -15,6 +19,9 @@ abstract class HetuStdLoader {
   static void loadBindings(Hetu hetu) {
     final classes = [
       BitwiseClassBinding(),
+      StreamSubscriptionClassBinding(),
+      StreamClassBinding(),
+      StreamControllerClassBinding(),
       HttpBaseOptionsClassBinding(),
       RequestOptionsClassBinding(),
       HttpResponseClassBinding(),
@@ -43,8 +50,10 @@ abstract class HetuStdLoader {
   }
 
   static Future<void> loadBytecodeFlutter(Hetu hetu) async {
-    final byteCodeFile = File('packages/hetu_std/assets/bytecode/std.out');
-    final byteCode = await byteCodeFile.readAsBytes();
+    final byteCodeFile = await rootBundle.load(
+      'packages/hetu_std/assets/bytecode/std.out',
+    );
+    final byteCode = byteCodeFile.buffer.asUint8List();
 
     hetu.loadBytecode(bytes: byteCode, moduleName: 'std');
   }

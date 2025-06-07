@@ -5,6 +5,7 @@ version: 1.0.0
 
 environment:
   sdk: ^3.7.2
+  flutter: ">=3.0.0 <4.0.0"
 
 # Add regular dependencies here.
 dependencies:
@@ -14,6 +15,8 @@ dependencies:
   base32: ^2.1.3
   path: ^1.9.1
   # path: ^1.8.0
+  flutter:
+    sdk: flutter
 
 dev_dependencies:
   lints: ^5.0.0

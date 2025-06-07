@@ -1,0 +1,66 @@
+external class StreamSubscription {
+  get isPaused -> bool
+
+  fun asFuture() -> Future
+  fun cancel() -> Future
+  fun pause() -> void
+  fun resume() -> void
+}
+
+external class Stream {
+  construct empty()
+  construct fromIterable(iterable: List)
+
+  get isBroadcast -> bool
+  get isEmpty -> Future
+  get length -> Future
+  get first -> Future
+  get last -> Future
+  get single -> Future
+
+  fun asBroadcastStream({
+    onListen: (subscription) -> void,
+    onCancel: (subscription) -> void,
+  }) -> Stream
+
+  fun listen(
+    onData: (data) -> void,
+    {
+      onError: (error, [stackTrace]) -> void,
+      onDone: () -> void,
+      cancelOnError: bool,
+    }
+  ) -> StreamSubscription
+}
+
+external class StreamController {
+  construct ({
+    sync: bool,
+    onListen: Function,
+    onPause: Function,
+    onResume: Function,
+    onCancel: Function,
+  });
+
+  construct broadcast({
+    sync: bool,
+    onListen: Function,
+    onCancel: Function,
+  })
+
+  get done -> Future
+  get isClosed -> bool
+  get isPaused -> bool
+  get hasListener -> bool
+  get stream -> Stream
+
+  fun add(data) -> void
+  fun addError(error, [stackTrace]) -> void
+  fun close() -> Future
+}
+
+export {
+  StreamSubscription,
+  Stream,
+  StreamController,
+}
