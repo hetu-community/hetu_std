@@ -51,6 +51,14 @@ abstract class HetuStdLoader {
     hetu.loadBytecode(bytes: byteCode, moduleName: 'std');
   }
 
+  /// Loads the bytecode for the standard library from the Flutter asset bundle.
+  /// Add following to your `pubspec.yaml`:
+  /// 
+  /// ```yaml
+  /// flutter:
+  ///   assets:
+  ///     - packages/hetu_std/assets/bytecode/std.out
+  /// ```
   static Future<void> loadBytecodeFlutter(Hetu hetu) async {
     final byteCodeFile = await rootBundle.load(
       'packages/hetu_std/assets/bytecode/std.out',
