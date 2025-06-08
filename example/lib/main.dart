@@ -15,7 +15,13 @@ void main() async {
 
     var { Base32, utf8, Crypto, Timer, Duration, HttpClient, 
       HttpResponse, RequestOptions, Bitwise, DateTime,
-      StreamController, Stream, StreamSubscription, JSON } = std
+      StreamController, Stream, StreamSubscription, JSON, Regex } = std
+
+    var regex = Regex('(\\w+)\\s+(\\w+)')
+    var match = regex.matchAsPrefix("Hello World")
+    print("Match: ${match}")
+    print("Start: ${match.start}, End: ${match.end}")
+    print("Group 0: ${match.group(0)}")
 
     var strJson = '{"hello": "world", "foo": "bar"}'
     var jsonData = JSON.decode(strJson)

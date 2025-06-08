@@ -8,6 +8,7 @@ import 'package:hetu_std/crypto/crypto.binding.dart';
 import 'package:hetu_std/datetime/datetime.binding.dart';
 import 'package:hetu_std/http/http.binding.dart';
 import 'package:hetu_std/json/json.binding.dart';
+import 'package:hetu_std/regexp/regexp.binding.dart';
 import 'package:hetu_std/stream/stream.binding.dart';
 import 'package:hetu_std/stream/stream_controller.binding.dart';
 import 'package:hetu_std/stream/stream_subscription.binding.dart';
@@ -36,6 +37,9 @@ abstract class HetuStdLoader {
       Base32ClassBinding(),
       CryptoClassBinding(),
       JSONClassBinding(),
+      ExpressionMatchClassBinding(),
+      SimpleMatchClassBinding(),
+      RegexClassBinding(),
     ];
 
     for (final classBinding in classes) {

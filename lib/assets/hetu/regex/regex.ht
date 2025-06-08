@@ -1,0 +1,48 @@
+external class ExpressionMatch {
+  get start -> int
+  get end -> int
+  get input -> string
+  get groupCount -> int
+
+  fun namedGroup(name: string) -> string
+  fun group(index: int) -> string
+  fun groups(groupIndices: List) -> List
+}
+
+external class SimpleMatch {
+  get start -> int
+  get end -> int
+  get input -> string
+  get groupCount -> int
+
+  fun group(index: int) -> string
+  fun groups(groupIndices: List) -> List
+}
+
+external class Regex {
+  construct (
+    pattern: string, {
+    caseSensitive: bool,
+    multiLine: bool,
+    unicode: bool,
+    dotAll: bool,
+  })
+
+  get isCaseSensitive -> bool
+  get isMultiLine -> bool
+  get isUnicode -> bool
+  get isDotAll -> bool
+  get pattern -> string
+
+  fun hasMatch(input: string) -> bool
+  fun firstMatch(input: string) -> ExpressionMatch
+  fun allMatches(input: string, [start: int = 0]) -> List
+  fun matchAsPrefix(input: string, [start: int = 0]) -> SimpleMatch
+  fun stringMatch(input: string) -> string
+}
+
+export {
+  ExpressionMatch,
+  SimpleMatch,
+  Regex,
+}

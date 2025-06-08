@@ -55,7 +55,7 @@ external class DateTime {
   fun add(duration: Duration) -> DateTime
   fun subtract(duration: Duration) -> DateTime
   fun compareTo(duration: DateTime) -> int
-  fun difference(duration: Duration) -> DateTime
+  fun difference(duration: DateTime) -> Duration
   fun isAfter(duration: DateTime) -> bool
   fun isBefore(duration: DateTime) -> bool
   fun isAtSameMomentAs(duration: DateTime) -> bool
