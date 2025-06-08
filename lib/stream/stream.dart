@@ -1,5 +1,7 @@
 import 'dart:async' as async;
 
+import 'package:hetu_std/stream/stream_subscription.dart';
+
 class Stream {
   final async.Stream _stream;
 
@@ -9,17 +11,19 @@ class Stream {
   Stream.fromIterable(Iterable<dynamic> elements)
     : _stream = async.Stream.fromIterable(elements);
 
-  async.StreamSubscription listen(
+  StreamSubscription listen(
     void Function(dynamic event) onData, {
     Function? onError,
     void Function()? onDone,
     bool cancelOnError = false,
   }) {
-    return _stream.listen(
-      onData,
-      onError: onError,
-      onDone: onDone,
-      cancelOnError: cancelOnError,
+    return StreamSubscription(
+      _stream.listen(
+        onData,
+        onError: onError,
+        onDone: onDone,
+        cancelOnError: cancelOnError,
+      ),
     );
   }
 
