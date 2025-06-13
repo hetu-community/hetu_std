@@ -18,6 +18,8 @@ import 'package:hetu_std/utf8/utf8.binding.dart';
 import 'package:path/path.dart';
 
 export 'package:hetu_std/stream/stream.dart';
+export 'package:hetu_std/stream/stream_controller.dart';
+export 'package:hetu_std/stream/stream_subscription.dart';
 
 abstract class HetuStdLoader {
   static void loadBindings(Hetu hetu) {
