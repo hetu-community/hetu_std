@@ -49,4 +49,8 @@ class Regex {
   String toString() {
     return _regex.toString();
   }
+
+  static List<String> splitString(String input, Regex pattern) {
+    return input.split(pattern._regex);
+  }
 }

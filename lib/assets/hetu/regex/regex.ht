@@ -39,6 +39,8 @@ external class Regex {
   fun allMatches(input: string, [start: int = 0]) -> List
   fun matchAsPrefix(input: string, [start: int = 0]) -> SimpleMatch
   fun stringMatch(input: string) -> string
+
+  static fun splitString(input: string, pattern: Regex) -> List // List<String>
 }
 
 export {

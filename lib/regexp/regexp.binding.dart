@@ -189,6 +189,13 @@ class RegexClassBinding extends HTExternalClass {
           Map<String, dynamic> namedArgs = const {},
           List<HTType> typeArgs = const [],
         }) => Regex.escape(positionalArgs[0]),
+      "Regex.splitString" =>
+        (
+          HTEntity entity, {
+          List<dynamic> positionalArgs = const [],
+          Map<String, dynamic> namedArgs = const {},
+          List<HTType> typeArgs = const [],
+        }) => Regex.splitString(positionalArgs[0], positionalArgs[1]),
       _ => throw HTError.undefined(varName),
     };
   }
