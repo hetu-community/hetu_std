@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:hetu_script/hetu_script.dart';
+import 'package:hetu_script/values.dart';
 import 'package:hetu_std/base32/base32.binding.dart';
 import 'package:hetu_std/bitwise/bitwise.binding.dart';
 import 'package:hetu_std/crypto/crypto.binding.dart';
@@ -47,6 +48,17 @@ abstract class HetuStdLoader {
     for (final classBinding in classes) {
       hetu.interpreter.bindExternalClass(classBinding);
     }
+
+    hetu.interpreter.bindExternalFunction('delayed', (
+      HTEntity entity, {
+      List? positionalArgs,
+      Map? namedArgs,
+      typeArgs,
+    }) {
+      final duration = positionalArgs?[0] as Duration;
+      final callback = positionalArgs?[1] as HTFunction;
+      return Future.delayed(duration, () => callback.call());
+    });
   }
 
   static Future<void> loadBytecodePureDart(
