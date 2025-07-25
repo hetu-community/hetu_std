@@ -56,8 +56,11 @@ abstract class HetuStdLoader {
       typeArgs,
     }) {
       final duration = positionalArgs?[0] as Duration;
-      final callback = positionalArgs?[1] as HTFunction;
-      return Future.delayed(duration, () => callback.call());
+      final callback = positionalArgs?[1] as HTFunction?;
+      return Future.delayed(
+        duration,
+        callback != null ? () => callback.call() : null,
+      );
     });
   }
 
