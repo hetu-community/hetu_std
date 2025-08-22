@@ -1,0 +1,15 @@
+import { Duration } from "../timer/timer.ht"
+
+external class FutureUtils {
+  static fun delayed(
+    duration: Duration,
+    callback: Function
+  ) -> Future
+
+  static fun execute(
+    futures: List, // List of futures
+    { delay: Duration }
+  ) -> Future
+}
+
+export { FutureUtils }

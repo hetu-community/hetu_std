@@ -10,10 +10,4 @@ export './utf8/utf8.ht'
 export './stream/stream.ht'
 export './json/json.ht'
 export './regex/regex.ht'
-
-external fun delayed(
-  duration: Duration,
-  callback: Function
-) -> Future
-
-export { delayed }
+export './future_utils/future_utils.ht'

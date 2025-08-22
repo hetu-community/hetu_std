@@ -15,12 +15,29 @@ void main() async {
 
     var { Base32, utf8, Crypto, Timer, Duration, HttpClient, 
       HttpResponse, RequestOptions, Bitwise, DateTime,
-      StreamController, Stream, StreamSubscription, JSON, Regex, delayed } = std
+      StreamController, Stream, StreamSubscription, JSON, Regex, FutureUtils } = std
     
-    delayed(Duration(seconds: 2), () {
+    FutureUtils.delayed(Duration(seconds: 2), () {
       print("Delayed execution after 2 seconds")
     }).then(() {
       print("This will run after the delay")
+    })
+
+    FutureUtils.execute(
+      [
+        Future((){
+          print("First future");
+        }),
+        Future((){
+          print("Second future");
+        }),
+        Future((){
+          print("Third future");
+        }),
+      ], 
+      delay: Duration(milliseconds: 2000)
+    ).then((results){
+      print(results)
     })
 
     var regex = Regex('(\\w+)\\s+(\\w+)')
