@@ -10,6 +10,11 @@ external class FutureUtils {
     futures: List, // List of futures
     { delay: Duration }
   ) -> Future
+
+  static fun chain(
+    futures: List, // List of callbacks returning futures
+    { delay: Duration }
+  ) -> Future
 }
 
 export { FutureUtils }

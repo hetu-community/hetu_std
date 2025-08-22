@@ -36,9 +36,22 @@ void main() async {
         }),
       ], 
       delay: Duration(milliseconds: 2000)
-    ).then((results){
-      print(results)
-    })
+    )
+
+    FutureUtils.chain(
+      [
+        () => Future((){
+          print("First chain future");
+        }),
+        () => Future((){
+          print("Second chain future");
+        }),
+        () => Future((){
+          print("Third chain future");
+        }),
+      ], 
+      delay: Duration(milliseconds: 2000)
+    )
 
     var regex = Regex('(\\w+)\\s+(\\w+)')
     var match = regex.matchAsPrefix("Hello World")

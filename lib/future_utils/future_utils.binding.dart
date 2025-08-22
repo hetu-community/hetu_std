@@ -20,6 +20,17 @@ class FutureUtils extends HTExternalClass {
     return results;
   }
 
+  Future<List> chain(List<Future Function()> futures, {Duration? delay}) async {
+    final results = <dynamic>[];
+    for (final future in futures) {
+      if (delay != null && futures.indexOf(future) > 0) {
+        await Future.delayed(delay);
+      }
+      results.add(await future());
+    }
+    return results;
+  }
+
   @override
   memberGet(String varName, {String? from}) {
     switch (varName) {
@@ -45,6 +56,20 @@ class FutureUtils extends HTExternalClass {
           List<HTType> typeArgs = const [],
         }) => execute(
           (positionalArgs[0] as List).cast<Future>(),
+          delay: namedArgs['delay'],
+        );
+      case "FutureUtils.chain":
+        return (
+          HTEntity entity, {
+          List<dynamic> positionalArgs = const [],
+          Map<String, dynamic> namedArgs = const {},
+          List<HTType> typeArgs = const [],
+        }) => chain(
+          (positionalArgs[0] as List)
+              .map((e) {
+                return () async => (e as HTFunction).call();
+              })
+              .toList(),
           delay: namedArgs['delay'],
         );
       default:
