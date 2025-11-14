@@ -1,0 +1,7 @@
+external class Base64 {
+    static fun encode(str: string) -> List
+
+    static fun decode(bytes: List<int>) -> string
+}
+
+export { Base64 }

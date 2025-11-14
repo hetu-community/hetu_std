@@ -13,10 +13,16 @@ void main() async {
   hetu.eval(r"""
     import 'module:std' as std
 
-    var { Base32, utf8, Crypto, Timer, Duration, HttpClient, 
+    var { Base64, Base32, utf8, Crypto, Timer, Duration, HttpClient, 
       HttpResponse, RequestOptions, Bitwise, DateTime,
       StreamController, Stream, StreamSubscription, JSON, Regex, FutureUtils } = std
     
+    var base64String = Base64.encode([104, 101, 116, 117])
+    print("Base64 Encoded: ${base64String}")
+
+    var decodedString = Base64.decode(base64String)
+    print("Base64 Decoded: ${decodedString}")
+
     FutureUtils.delayed(Duration(seconds: 2), () {
       print("Delayed execution after 2 seconds")
     }).then(() {

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:hetu_script/hetu_script.dart';
 import 'package:hetu_std/base32/base32.binding.dart';
+import 'package:hetu_std/base64/base64.binding.dart';
 import 'package:hetu_std/bitwise/bitwise.binding.dart';
 import 'package:hetu_std/crypto/crypto.binding.dart';
 import 'package:hetu_std/datetime/datetime.binding.dart';
@@ -38,6 +39,7 @@ abstract class HetuStdLoader {
       DateTimeClassBinding(),
       Utf8CodecBinding(),
       Base32ClassBinding(),
+      Base64ClassBinding(),
       CryptoClassBinding(),
       JSONClassBinding(),
       ExpressionMatchClassBinding(),
