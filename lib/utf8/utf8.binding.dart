@@ -12,7 +12,7 @@ extension Utf8Binding on Utf8Codec {
       case 'decode':
         return (HTEntity entity, {positionalArgs, namedArgs, typeArgs}) =>
             decode(
-              positionalArgs[0],
+              (positionalArgs[0] as List).cast<int>(),
               allowMalformed: namedArgs['allowMalformed'],
             );
       default:

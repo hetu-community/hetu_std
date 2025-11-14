@@ -16,7 +16,7 @@ class Base32ClassBinding extends HTExternalClass {
       case 'Base32.encode':
         return (HTEntity entity, {positionalArgs, namedArgs, typeArgs}) =>
             Base32.encode(
-              positionalArgs[0],
+              (positionalArgs[0] as List).cast<int>(),
               encoding: _parseEncoding(namedArgs['encoding']),
             );
       case 'Base32.decode':
